@@ -4,12 +4,37 @@
     <title>CollegeStudentPortal</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/header' %>
+    <div class="top_position">
+      <% if user_signed_in? %>
+        <div class="col-sm-2 pd-0">
+          <%= render 'layouts/left_content' %>
+        </div>
+      <% end %>
+      <div class="pd-0 <%= user_signed_in? ? 'col-sm-10' : 'col-sm-12' %>">
+        <div class="notifications top-right"></div>
+        <%= yield %>
+      </div>
+      <% if !notice.blank? %>
+      <script type="text/javascript">
+        $(document).ready(function () {
+          $('.top-right').notify({
+            message: { text: "#{notice}" }
+          }).show();
+        });
+      </script>
+    <% end %>
   </body>
 </html>

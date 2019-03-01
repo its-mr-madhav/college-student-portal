@@ -1,0 +1,26 @@
+<% if user_signed_in? %>
+  <div class="right_side_tab">
+    <div class="right_side_inner">
+      <ul class="tab_ul">
+        <li><%= link_to('Home', root_path) %></li>
+        <% case current_user.role.name %>
+          <% when "admin" %>
+            <li><%= link_to('Admin Dashboard', users_path) %></li>
+            <li><%= link_to('Departments', departments_path) %></li>
+            <li><%= link_to('Semesters', semesters_path) %></li>
+          <% when "hod" %>
+            <li><%= link_to('Admin Dashboard', users_path) %></li>
+            <li><%= link_to('Subjects', subjects_path) %></li>
+            <li><%= link_to( 'Faculties of Subjects',faculty_subjects_path ) %></li>
+          <% when "faculty" %>
+            <li><%= link_to('Admin Dashboard', users_path) %></li>
+          <% when "student" %>
+            
+          <% else %>
+            <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+        <% end %>
+        <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+      </ul>
+    </div>
+  </div>
+<% end %>

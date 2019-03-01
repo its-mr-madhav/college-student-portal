@@ -1,0 +1,19 @@
+<div>
+  <marquee direction="left", scrollamount="14", class="home-marque">
+    <h1>Welcome To the Portal</h1>
+  </marquee>
+</div>
+<div>
+  <ul>
+    <% if !user_signed_in? %>
+      <li>If you want to login then
+        <button class="btn" type="button">
+          <%= link_to('click here', new_user_session_path) %>
+        </button>
+      </li>
+    <% end %>
+    <li><a href="#">News</a></li>
+    <li><a href="#">Notes</a></li>
+    <li><a href="#">Queries</a></li>
+  </ul>
+</div>

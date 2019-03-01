@@ -1,0 +1,44 @@
+<% if user_signed_in? && (current_user.role.name == "admin" || current_user.role.name == "hod" || current_user.role.name == "faculty" ) %>
+  <div class="welcom_admin">
+    <div class="welcom_admin_inner">
+      <div class="heding_top">
+        <span><%= @user.name %></span>
+      </div>
+      <div class="accordion" id="showUsers">
+          <div class="card">
+            <div class="card-header" id="<%= @user.id %>">
+              <h5 class="mb-0">
+                <button class="btn btn-link left_btn" type="button" data-toggle="collapse" data-target="#hex_one" aria-expanded="true" aria-controls="hex_one">
+                  Click Here For Details
+                </button>
+                <button class="btn btn-link btn_link_right" type="button">
+                  <%= link_to( 'Edit', edit_user_path(user.id) ) %>
+                </button>
+                <button class="btn btn-link btn_link_right" type="button">
+                  <%= link_to( "Destroy", user_path(user.id), method: :delete, data: { confirm: "You sure to delete user? This cannot be undone." }) %>
+                </button>
+              </h5>
+            </div>
+
+            <div id="hex_one" class="collapse" aria-labelledby="<%= @user.id %>" data-parent="#showUsers">
+              <div class="card-body">
+                <label>Email :</label>
+                <span><%= @user.email %></span><br>
+                <label>Role :</label>
+                <span><%= @user.role.name.capitalize %></span><br>
+                <% if user.department.present? %>
+                  <label>Department :</label>
+                  <span><%= @user.department.name.upcase %></span><br>
+                <% end %>
+                <% if user.semester.present? %>
+                  <label>Semester :</label>
+                  <span><%= @user.semester.name.capitalize %></span><br>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

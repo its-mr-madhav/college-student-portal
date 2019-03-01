@@ -1,0 +1,36 @@
+<% if user_signed_in? && current_user.role.name == "admin" %>
+  <div class="welcom_admin">
+    <div class="welcom_admin_inner">
+      <div class="heding_top">
+        <span>Semester Index</span>
+        <%= link_to( 'Add Semester',new_semester_path ) %>
+      </div>
+      <div class="accordion" id="showSemesters">
+        <% Semester.all.each_with_index do |semester,index| %>
+          <div class="card">
+            <div class="card-header" id="<%= semester.id %>">
+              <h5 class="mb-0">
+                <button class="btn btn-link left_btn" type="button" data-toggle="collapse" data-target="#hex_<%= index %>" aria-expanded="true" aria-controls="hex_<%= index %>">
+                  <%= semester.name.capitalize %>
+                </button>
+                <button class="btn btn-link btn_link_right" type="button">
+                  <%= link_to( 'Edit Semester', edit_semester_path(semester.id) ) %>
+                </button>
+                <button class="btn btn-link btn_link_right" type="button">
+                  <%= link_to( "Destroy Semester", semester_path(semester.id), method: :delete, data: { confirm: "You sure to delete semester? This cannot be undone." }) %>
+                </button>
+              </h5>
+            </div>
+
+            <div id="hex_<%= index %>" class="collapse" aria-labelledby="<%= semester.id %>" data-parent="#showSemesters">
+              <div class="card-body">
+                <label>Department :</label>
+                <span><%= semester.department.name.upcase %></span><br>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

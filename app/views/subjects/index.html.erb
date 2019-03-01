@@ -1,0 +1,38 @@
+<% if user_signed_in? && current_user.role.name == "hod" %>
+  <div class="welcom_admin">
+    <div class="welcom_admin_inner">
+      <div class="heding_top">
+        <span>Subject Index</span>
+        <%= link_to( 'Add Subject',new_subject_path ) %>
+      </div>
+      <div class="accordion" id="showSubjects">
+        <% Subject.all.each_with_index do |subject,index| %>
+          <div class="card">
+            <div class="card-header" id="<%= subject.id %>">
+              <h5 class="mb-0">
+                <button class="btn btn-link left_btn" type="button" data-toggle="collapse" data-target="#hex_<%= index %>" aria-expanded="true" aria-controls="hex_<%= index %>">
+                  <%= subject.name %>
+                </button>
+                <button class="btn btn-link btn_link_right" type="button">
+                  <%= link_to( 'Edit Subject', edit_subject_path(subject.id) ) %>
+                </button>
+                <button class="btn btn-link btn_link_right" type="button">
+                  <%= link_to( "Destroy Subject", subject_path(subject.id), method: :delete, data: { confirm: "You sure to delete subject? This cannot be undone." }) %>
+                </button>
+              </h5>
+            </div>
+
+            <div id="hex_<%= index %>" class="collapse" aria-labelledby="<%= subject.id %>" data-parent="#showSubjects">
+              <div class="card-body">
+                <label>Subject Code :</label>
+                <span><%= subject.code %></span><br>
+                <label>Semester :</label>
+                <span><%= subject.semester.name.upcase %></span><br>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

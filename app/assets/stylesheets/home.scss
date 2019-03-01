@@ -1,0 +1,13 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.notice {
+  padding: 10px;
+  background: #94949447;
+  border-radius: 6px;
+  text-align: center;
+  z-index: 1;
+  width: 100%;
+  margin: 35px auto;
+  position: absolute;
+}

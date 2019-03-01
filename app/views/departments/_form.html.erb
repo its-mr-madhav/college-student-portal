@@ -1,0 +1,13 @@
+<div class="main_container">
+  <div class="inner">
+    <div class="form_start">
+      <%= form_for @department do |f| %>
+        <%= f.text_field :name, required: true , class: 'input_text', placeholder: 'Department Name'%><br/>
+        <%= f.text_field :code, required: true , class: 'input_text', placeholder: 'Department Code'%><br/><br>
+        <div class="submit_container">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
