@@ -15,12 +15,13 @@ end
 role_id = Role.find_by(name: "admin").id
 
 if User.count == 0
-  User.create(
-    name: "Portal Admin",
-    email: "portaladmin@bbdit.com",
-    phone: "9876543210",
-    password: "password",
-    password_confirmation: "password",
-    role_id: role_id
-  )
+  u = User.create(
+        name: "Portal Admin",
+        email: "portaladmin@bbdit.com",
+        phone: "9876543210",
+        password: "password",
+        password_confirmation: "password",
+        role_id: role_id
+      )
+  u.confirm
 end
