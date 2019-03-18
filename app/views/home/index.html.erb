@@ -1,21 +1,17 @@
-<div>
-  <marquee direction="left", scrollamount="14", class="home-marque">
-    <h1>Welcome To the College Student Portal</h1>
+<div class="home-marque">
+  <marquee direction="left", scrollamount="14">
+    <span>Welcome To the College Student Portal</span>
   </marquee>
 </div>
-<div>
-  <marquee direction="right", scrollamount="20", class="home-marque">
-    <h1>Made by Madhusudhan Sharma</h1>
+<div class="home-marque">
+  <marquee direction="right", scrollamount="20">
+    <span>Made by Madhusudhan Sharma</span>
   </marquee>
 </div>
-<div>
-  <ul>
-    <% if !user_signed_in? %>
-      <li>If you want to login then
-        <button class="btn" type="button">
-          <%= link_to('click here', new_user_session_path) %>
-        </button>
-      </li>
-    <% end %>
-  </ul>
+<div class="login-txt">
+  <% if !user_signed_in? %>
+    <span>
+      If you want to login then <%= link_to "click here", new_user_session_path %>
+    </span>
+  <% end %>
 </div>

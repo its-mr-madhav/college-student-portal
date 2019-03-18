@@ -112,7 +112,10 @@ body{
     max-width: 1170px;
     margin: 0 auto;
     img{
-      width: 326px;
+      width: 382px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
     }
   }
 }
@@ -403,4 +406,30 @@ body{
 /*===home===*/
 .home-marque{
   background-color: #618dc5;
+  width: 100%;
+  vertical-align: middle;
+  height: 44px;
+  margin: 2px 0px;
+    span{
+      font-size: 25px;
+    }
+}
+.login-txt{
+  text-align: center;
+  font-size: 17px;
+    span a:link {
+    color: red;
+    }
+
+    span a:visited {
+      color: green;
+    }
+
+    span a:hover {
+      color: hotpink;
+    }
+
+    span a:active {
+      color: blue;
+    }
 }

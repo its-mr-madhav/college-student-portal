@@ -24,17 +24,8 @@
         </div>
       <% end %>
       <div class="pd-0 <%= user_signed_in? ? 'col-sm-10' : 'col-sm-12' %>">
-        <div class="notifications top-right"></div>
+        <%= render 'toastr_rails/flash' %>
         <%= yield %>
       </div>
-      <% if !notice.blank? %>
-      <script type="text/javascript">
-        $(document).ready(function () {
-          $('.top-right').notify({
-            message: { text: "#{notice}" }
-          }).show();
-        });
-      </script>
-    <% end %>
   </body>
 </html>

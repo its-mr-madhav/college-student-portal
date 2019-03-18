@@ -2,8 +2,8 @@
   <div class="inner">
     <div class="form_start">
       <%= form_for @semester do |f| %>
-        <%= f.text_field :name, required: true , class: 'input_text', placeholder: 'Semester Name'%><br/>
-        <%= f.select :department_id, options_for_select(Department.all.order(:name).map{|s|[s.name, s.id]}, @semester&.department_id),  prompt: "Please Select Department" %><br/><br>
+        <%= f.select :department_id, options_for_select(Department.all.order(:name).map{|s|[s.name, s.id]}, @semester&.department_id),  prompt: "Please Select Department" %><br/>
+        <%= f.text_field :name, required: true , class: 'input_text', placeholder: 'Semester Name'%><br/><br>
         <div class="submit_container">
           <%= f.submit %>
         </div>

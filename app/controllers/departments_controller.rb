@@ -17,6 +17,7 @@ class DepartmentsController < ApplicationController
 
   def new
     @department = Department.new
+    @department.semesters.build
   end
 
   def show
@@ -40,7 +41,7 @@ class DepartmentsController < ApplicationController
   private
 
   def department_params
-    params.require(:department).permit(:name, :code)
+    params.require(:department).permit(:name, :code, semesters_attributes: [:id, :name, :done, :_destroy])
   end
 
   def get_department

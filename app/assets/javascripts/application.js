@@ -14,8 +14,8 @@
 //= require jquery.min
 //= require bootstrap.min
 //= require jquery
-//= require bootstrap_notify
+//= require toastr_rails
+//= require cocoon
 //= require activestorage
-//= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
