@@ -12,28 +12,23 @@ class SubjectsController < ApplicationController
     redirect_to subjects_path
   end
 
-  def edit
-  end
+  def edit; end
 
   def new
     @subject = Subject.new
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
-    @subject.destroy
-    if @subject.destroy
-        redirect_to root_url, notice: "Subject deleted."
-    end
+    redirect_to root_url, notice: 'Subject deleted' if @subject.destroy
   end
 
   def update
     if @subject.update(subject_params)
-      redirect_to subjects_path, notice: "Subject is updated successfully"
+      redirect_to subjects_path, notice: 'Subject is updated successfully'
     else
-      render action: "edit"
+      render action: 'edit'
     end
   end
 
@@ -48,6 +43,6 @@ class SubjectsController < ApplicationController
   end
 
   def ensure_hod
-    redirect_to root_path and return if !(current_user.role.name == "hod")
+    redirect_to root_path && return unless current_user.role.name == 'hod'
   end
 end

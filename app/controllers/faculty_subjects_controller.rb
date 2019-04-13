@@ -12,28 +12,37 @@ class FacultySubjectsController < ApplicationController
     redirect_to faculty_subjects_path
   end
 
-  def edit
-  end
+  def edit; end
 
   def new
     @faculty_subject = FacultySubject.new
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
-    @faculty_subject.destroy
-    if @faculty_subject.destroy
-        redirect_to root_url, notice: "Faculty Subject deleted."
-    end
+    redirect_to root_url, notice: 'Faculty Subject deleted' if @faculty_subject.destroy
   end
 
   def update
     if @faculty_subject.update(faculty_subject_params)
-      redirect_to faculty_subjects_path, notice: "Faculty Subject is updated successfully"
+      redirect_to faculty_subjects_path, notice: 'Faculty Subject is updated successfully'
     else
-      render action: "edit"
+      render action: 'edit'
+    end
+  end
+
+  def get_subject
+    @subjects = []
+    if params[:faculty_id].eql?('')
+      @subjects << ['Please Select Faculty First', nil]
+      render json: {subjects: @subjects}
+    else
+      faculty_id = params[:faculty_id]
+      User.find(faculty_id).subjects.each do |subject|
+        @subjects << [subject.name, subject.id]
+      end
+      render json: {subjects: @subjects}
     end
   end
 
@@ -48,6 +57,6 @@ class FacultySubjectsController < ApplicationController
   end
 
   def ensure_hod
-    redirect_to root_path and return if !(current_user.role.name == "hod")
+    redirect_to root_path and return unless current_user.role.name == 'hod'
   end
 end

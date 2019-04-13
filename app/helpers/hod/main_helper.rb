@@ -1,0 +1,2 @@
+module Hod::MainHelper
+end

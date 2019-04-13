@@ -4,22 +4,22 @@ class UsersController < ApplicationController
   before_action :get_user, only: [:edit, :update, :destroy, :show]
 
   def index
-    @user = User.new
+    @users = User.all
   end
 
   def create
     @user = User.new(user_params)
-    @user.password = "password"
+    @user.password = 'password'
     case current_user.role.name
-      when "admin"
-        @user.role = Role.find_by(name: "hod")
-      when "faculty"
-        @user.role = Role.find_by(name: "student")
+      when 'admin'
+        @user.role = Role.find_by(name: 'hod')
+      when 'faculty'
+        @user.role = Role.find_by(name: 'student')
       else
         @user.role
     end
     @user.save
-    redirect_to users_path
+    redirect_to users_path, notice: 'User created successfully'
   end
 
   def edit
@@ -33,18 +33,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    if @user.destroy
-        redirect_to root_url, notice: "User deleted."
-    end
+    redirect_to root_url, notice: 'User deleted' if @user.destroy
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to users_path, notice: "User is updated successfully"
-    else
-      render action: "edit"
-    end
+    @user.update(user_params) ? redirect_to users_path, notice: 'User updated successfully' : render action: 'edit'
   end
 
   private
@@ -58,6 +51,6 @@ class UsersController < ApplicationController
   end
 
   def ensure_permitted
-    redirect_to root_path and return if !(current_user.role.name == "admin" || current_user.role.name == "hod" || current_user.role.name == "faculty")
+    redirect_to root_path && return if current_user.role.name == 'student'
   end
 end

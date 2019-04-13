@@ -1,0 +1,2 @@
+module Faculty::MainHelper
+end

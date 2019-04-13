@@ -1,0 +1,2 @@
+module Student::MainHelper
+end

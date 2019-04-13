@@ -1,0 +1,2 @@
+module Faculty::UsersHelper
+end

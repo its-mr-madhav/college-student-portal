@@ -12,30 +12,21 @@ class DepartmentsController < ApplicationController
     redirect_to departments_path
   end
 
-  def edit
-  end
+  def edit; end
 
   def new
     @department = Department.new
     @department.semesters.build
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
-    @department.destroy
-    if @department.destroy
-        redirect_to root_url, notice: "Department deleted."
-    end
+    @department.destroy ? redirect_to root_url, notice: 'Department deleted' : redirect_to root_url, alert: 'Try again!!!'
   end
 
   def update
-    if @department.update(department_params)
-      redirect_to departments_path, notice: "Department is updated successfully"
-    else
-      render action: "edit"
-    end
+    @department.update(department_params) ? redirect_to departments_path, notice: 'Department updated successfully' : render action: 'edit'
   end
 
   private
@@ -49,6 +40,6 @@ class DepartmentsController < ApplicationController
   end
 
   def ensure_admin
-    redirect_to root_path and return if !(current_user.role.name == "admin")
+    redirect_to root_path && return unless current_user.role.name == 'admin'
   end
 end

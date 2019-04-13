@@ -2,22 +2,15 @@
   <div class="right_side_tab">
     <div class="right_side_inner">
       <ul class="tab_ul">
-        <li><%= link_to('Home', root_path) %></li>
-        <% case current_user.role.name %>
-          <% when "admin" %>
-            <li><%= link_to('Admin Dashboard', users_path) %></li>
-            <li><%= link_to('Departments', departments_path) %></li>
-            <li><%= link_to('Semesters', semesters_path) %></li>
-          <% when "hod" %>
-            <li><%= link_to('Admin Dashboard', users_path) %></li>
-            <li><%= link_to('Subjects', subjects_path) %></li>
-            <li><%= link_to( 'Subjects of Faculty Members',faculty_subjects_path ) %></li>
-          <% when "faculty" %>
-            <li><%= link_to('Admin Dashboard', users_path) %></li>
-          <% when "student" %>
-            
-          <% else %>
-            <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+        <li><%= link_to('Homepage', root_path) %></li>
+        <% if current_user.role.eql?('admin') %>
+          <%= render '/shared/admin_left_navigation'%>
+        <% elsif current_user.hod? %>
+          <%= render '/shared/hod_left_navigation'%>
+        <% elsif current_user.role.eql?('faculty') %>
+          <%= render '/shared/faculty_left_navigation'%>
+        <% elsif current_user.role.eql?('student') %>
+          <%= render '/shared/student_left_navigation'%>
         <% end %>
         <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
       </ul>

@@ -2,7 +2,7 @@
 
 class Users::SessionsController < Devise::SessionsController
   before_action :configure_sign_in_params, only: [:create]
-  before_action :check_confirmed, only: [:create]
+  before_action :ensure_confirmed, only: [:create]
 
   # GET /resource/sign_in
   def new
@@ -26,12 +26,10 @@ class Users::SessionsController < Devise::SessionsController
     devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   end
 
-  def check_confirmed
-    if User.find_by(email: params[:user][:email]).present?
-      if !User.find_by(email: params[:user][:email]).confirmed?
-        flash[:notice] = "Please Confirm Before Sign In"
-        redirect_to root_path
-      end
+  def ensure_confirmed
+    user = User.find_by(email: params[:user][:email])
+    unless user.present? && user.confirmed?
+      redirect_to root_path, alert: 'Please confirm your account before Sign In'
     end
   end
 end

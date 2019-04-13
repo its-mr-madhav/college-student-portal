@@ -13,9 +13,19 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
-
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_caching = false
+  ActionMailer::Base.smtp_settings = :smtp
+  config.action_mailer.smtp_settings = {
+    user_name: 'micro.madhusudhan',
+    password: 'Madhumadhu1@',
+    domain: 'herokuapp.com',
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
@@ -33,11 +43,6 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
-
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
-  config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

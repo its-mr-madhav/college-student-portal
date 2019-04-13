@@ -1,0 +1,13 @@
+<div class="main_container">
+  <div class="inner">
+    <div class="form_start">
+      <%= form_for @faculty_subject do |f| %>
+        <%= f.select :faculty_id, options_for_select(Role.find_by(name: "faculty").users.order(:name).map{|s|[s.name, s.id]}, @faculty_subject&.faculty_id),  prompt: "Please Select Faculty" %><br/>
+        <%= f.select :subject_id, options_for_select(Subject.all.order(:name).map{|s|[s.name, s.id]}, @faculty_subject&.faculty_id),  prompt: "Please Select Subject" %><br/><br>
+        <div class="submit_container">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

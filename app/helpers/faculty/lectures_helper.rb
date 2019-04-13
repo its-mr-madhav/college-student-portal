@@ -1,0 +1,2 @@
+module Faculty::LecturesHelper
+end

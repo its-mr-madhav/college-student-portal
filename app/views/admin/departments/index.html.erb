@@ -1,0 +1,61 @@
+<div class="welcom_admin">
+  <div class="welcom_admin_inner">
+    <div class="heding_top">
+      <span>All Departments</span>
+      <%= link_to( 'Add new Department',new_admin_department_path ) %>
+    </div>
+    <div class="accordion" id="showDepartments">
+      <% @departments.each_with_index do |department,index| %>
+        <div class="card">
+          <div class="card-header" id="<%= department.id %>">
+            <h5 class="mb-0">
+              <button class="btn btn-link left_btn" type="button" data-toggle="collapse" data-target="#hex_<%= index %>" aria-expanded="true" aria-controls="hex_<%= index %>">
+                <%= department.name %>
+              </button>
+              <button class="btn btn-link btn_link_right" type="button">
+                <%= link_to( 'Edit Department Details', edit_admin_department_path(department.id) ) %>
+              </button>
+              <button class="btn btn-link btn_link_right" type="button">
+                <%= link_to( "Remove Department", admin_department_path(department.id), method: :delete, data: { confirm: "You sure to remove department? This cannot be undone." }) %>
+              </button>
+            </h5>
+          </div>
+
+          <div id="hex_<%= index %>" class="collapse" aria-labelledby="<%= department.id %>" data-parent="#showDepartments">
+            <div class="card-body">
+              <label>Code :</label>
+              <span><%= department.code %></span><br>
+              <label>HOD :</label>
+              <span><%= department.users.where(hod: true).first %></span><br><br>
+              <% if department.semesters.present? %>
+                <label>Semesters :</label>
+                <table class="table table-hover table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Name</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% department.semesters.each_with_index do |semester,index| %>
+                    <tr>
+                      <th scope="row"><%= index+1 %></th>
+                      <td><%= semester.name.capitalize %></td>
+                      <td>
+                        <%= link_to( "Remove", admin_semester_path(semester.id), method: :delete, data: { confirm: "You sure to remove semester? This cannot be undone." }) %>
+                      </td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              <% else %>
+                <h5>No Semester Added</h5>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,2 @@
+module Hod::LecturesHelper
+end

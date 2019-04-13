@@ -9,7 +9,11 @@
   </marquee>
 </div>
 <div class="login-txt">
-  <% if !user_signed_in? %>
+  <% if user_signed_in? %>
+    <%= "Welcome : #{current_user.name}" %><br/>
+    <%= current_user.hod? ? "You are an HOD" : "You are an #{current_user.role.titleize}" %><br/>
+    <%= "Your department is #{current_user.department.name.titleize}" if current_user.department.present? %><br/>
+  <% else %>
     <span>
       If you want to login then <%= link_to "click here", new_user_session_path %>
     </span>

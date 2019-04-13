@@ -1,0 +1,22 @@
+<div class="main_container">
+  <div class="inner">
+    <div class="form_start">
+      <%= form_for([:admin, @department]) do |f| %>
+        <%= f.text_field :name, required: true , class: 'input_text', placeholder: 'Department Name'%><br/>
+        <%= f.number_field :code, required: true , class: 'input_text', placeholder: 'Department Code'%><br/><br>
+        <h5>Semesters</h5>
+        <div id="semesters">
+          <%= f.fields_for :semesters do |semester| %>
+            <%= render 'semester_fields', f: semester %>
+          <% end %>
+          <div class="links">
+            <%= link_to_add_association 'Add Semester', f, :semesters %>
+          </div>
+        </div>
+        <div class="submit_container">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="main_container">
+  <div class="inner">
+    <div class="form_start">
+      <%= form_for @time_table do |f| %>
+        <%= f.select :days, options_for_select(TimeTable::days.map{|key,value|[key.capitalize, value]}), required: true,  prompt: "Please Select Day" %><br/>
+        <%= f.select :lecture_id, options_for_select(Lecture.all.map{|s|["#{s.faculty.name} , #{s.}", s.id]}), required: true,  prompt: "Please Select Subject" %><br/><br>
+        <div class="submit_container">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

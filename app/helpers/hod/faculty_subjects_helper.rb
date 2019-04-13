@@ -1,0 +1,2 @@
+module Hod::FacultySubjectsHelper
+end

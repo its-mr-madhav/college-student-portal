@@ -1,0 +1,14 @@
+<div class="main_container">
+  <div class="inner">
+    <div class="form_start">
+      <%= form_for([:admin, @user]) do |f| %>
+        <%= f.text_field :name, required: true , class: 'input_text', placeholder: 'Name'%><br/>
+        <%= f.text_field :email, required: true , class: 'input_text', placeholder: 'Email'%><br/>
+        <%= f.select :department_id, options_for_select(Department.all.order(:name).pluck(:name, :id), @user&.department_id),  prompt: "Please Select Department" %><br/>
+        <div class="submit_container">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

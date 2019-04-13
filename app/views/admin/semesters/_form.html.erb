@@ -1,0 +1,13 @@
+<div class="main_container">
+  <div class="inner">
+    <div class="form_start">
+      <%= form_for([:admin, @semester]) do |f| %>
+        <%= f.select :department_id, options_for_select(@departments, @semester&.department_id), { :include_blank => 'Please Select Department' }, :required => true %><br/>
+        <%= f.text_field :name, required: true , class: 'input_text', placeholder: 'Semester Name'%><br/><br>
+        <div class="submit_container">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

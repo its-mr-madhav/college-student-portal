@@ -31,12 +31,24 @@ Rails.application.configure do
   # Store uploaded files on the local file system in a temporary directory
   config.active_storage.service = :test
 
-  config.action_mailer.perform_caching = false
-
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = { host: 'https://college-student-portal.herokuapp.com/' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_caching = false
+  ActionMailer::Base.smtp_settings = :smtp
+  config.action_mailer.smtp_settings = {
+    user_name: 'micro.madhusudhan',
+    password: 'Madhumadhu1@',
+    domain: 'herokuapp.com',
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
