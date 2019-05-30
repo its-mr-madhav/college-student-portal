@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   namespace :faculty, path: 'faculty' do
     resources :users
     resources :lectures
+    resources :attendances
     get '/', to: 'users#index'
   end
 

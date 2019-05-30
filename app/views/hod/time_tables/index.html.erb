@@ -1,9 +1,9 @@
-<% if user_signed_in? && current_user.role.name == "hod" %>
+<% if user_signed_in? && current_user.hod? %>
   <div class="welcom_admin">
     <div class="welcom_admin_inner">
       <div class="heding_top">
         <span>Time Table Index</span>
-        <%= link_to( 'Create Timetable',new_time_table_path ) %>
+        <%= link_to( 'Create Timetable', new_hod_time_table_path ) %>
       </div>
       <% if @time_tables.present? %>
         <table class="table table-hover table-striped">
@@ -24,8 +24,8 @@
               <td><%= lecture.id %></td>
               <td><%= lecture.faculty.name %></td>
               <td><%= lecture.faculty_subject.subject.name %></td>
-              <td><%= link_to( 'Edit', edit_lecture_path(lecture.id) ) %></td>
-              <td><%= link_to( "Delete", lecture_path(lecture.id), method: :delete, data: { confirm: "You sure to delete lecture? This cannot be undone." }) %></td>
+              <td><%= link_to( 'Edit', edit_hod_lecture_path(lecture.id) ) %></td>
+              <td><%= link_to( "Delete", hod_lecture_path(lecture.id), method: :delete, data: { confirm: "You sure to delete lecture? This cannot be undone." }) %></td>
             </tr>
             <% end %>
           </tbody>

@@ -2,8 +2,8 @@
   <div class="inner">
     <div class="form_start">
       <%= form_for @lecture do |f| %>
-        <%= f.select :faculty_id, options_for_select(Role.find_by(name: "faculty").users.order(:name).map{|s|[s.name, s.id]}), required: true,  prompt: "Please Select Faculty" %><br/>
-        <%= f.select :faculty_subject_id, options_for_select(FacultySubject.all.map{|s|[s.subject.name, s.id]}), required: true,  prompt: "Please Select Subject" %><br/><br>
+        <%= f.select :faculty_id, options_for_select(Role.find_by(name: "faculty").users.order(:name).map{|s|[s.name, s.id]}), { :include_blank => 'Please Select Faculty' }, :required => true %><br/>
+        <%= f.select :faculty_subject_id, options_for_select(FacultySubject.all.map{|s|[s.subject.name, s.id]}), { :include_blank => 'Please Select Subject' }, :required => true %><br/><br>
         <div class="submit_container">
           <%= f.submit %>
         </div>

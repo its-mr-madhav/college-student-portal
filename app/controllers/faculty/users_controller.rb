@@ -2,16 +2,20 @@ class Faculty::UsersController < Faculty::MainController
   before_action :get_user, only: [:edit, :update, :destroy]
 
   def index
-    binding.pry
-    @users = User.order('name asc').where(role: 'student')
+    @students = User.order('name asc').where("role = ? AND department_id = ?", 'student', current_user.department.id)
   end
 
   def create
     user = User.new(user_params)
     user.password = 'password'
     user.role = 'student'
-    user.save
-    redirect_to admin_users_url, notice: 'HOD added successfully'
+    if user.save
+      flash[:notice] = 'Student added successfully'
+      redirect_to faculty_users_url
+    else
+      flash[:error] = 'Some error occurred'
+      render action: 'new'
+    end
   end
 
   def edit; end
@@ -24,15 +28,15 @@ class Faculty::UsersController < Faculty::MainController
 
   def destroy
     if @user.destroy
-      redirect_to admin_users_url, notice: 'HOD removed successfully' 
+      redirect_to faculty_users_url, notice: 'Student removed successfully' 
     else
-      redirect_to admin_users_url, info: 'Please try again'
+      redirect_to faculty_users_url, info: 'Please try again'
     end
   end
 
   def update
     if @user.update(user_params)
-      redirect_to admin_users_url, notice: 'HOD details updated successfully'
+      redirect_to faculty_users_url, notice: 'Student details updated successfully'
     else
       render action: 'edit', info: 'Please try again'
     end

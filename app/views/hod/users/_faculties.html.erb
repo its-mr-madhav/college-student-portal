@@ -1,0 +1,33 @@
+<% if faculties.present? %> 
+  <h5>All Faculties:</h5>
+  <table class="table table-hover table-striped" id="faculty_table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Department</th>
+        <th scope="col">Confirmed</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% faculties.each_with_index do |faculty,index| %>
+      <tr>
+        <th scope="row"><%= index+1 %></th>
+        <td><%= faculty.name.capitalize %></td>
+        <td><%= faculty.email %></td>
+        <td><%= faculty.department.name.capitalize %></td>
+        <td><%= faculty.confirmed? ? 'Already Confirmed' : 'Confirmation Pending' %></td>
+        <td><%= link_to( 'Edit', edit_hod_user_path(faculty.id) ) %></td>
+        <td>
+          <%= link_to( "Delete", hod_user_path(faculty.id), method: :delete, data: { confirm: "You sure to remove faculty? This cannot be undone." }) %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h5>There is no faculty in your department</h5>
+<% end %>
