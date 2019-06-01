@@ -1,5 +1,29 @@
 <div class="top_min_logo_header">
-	<div class="logo">
-		<%= link_to image_tag('bbdit.jpg'), root_path %>
-	</div>
+ <div class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header ">
+      	<div class="logo">
+          <%= link_to image_tag('bbdit.jpg'), root_path %>
+        </div>
+	    </div>
+      <ul class="nav navbar-nav mynavbar">
+	    	<% if user_signed_in? %>
+		      <li><%= link_to('Homepage', root_path) %></li>
+	        <% if current_user.role.eql?('admin') %>
+	          <%= render '/shared/admin_left_navigation'%>
+	        <% elsif current_user.hod? %>
+	          <%= render '/shared/hod_left_navigation'%>
+	        <% elsif current_user.role.eql?('faculty') %>
+	          <%= render '/shared/faculty_left_navigation'%>
+	        <% elsif current_user.role.eql?('student') %>
+	          <%= render '/shared/student_left_navigation'%>
+	        <% end %>
+	        <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+				<% else %>
+					<li><%= link_to "Login", new_user_session_path %>
+					</li>
+				<% end%>
+	    </ul>
+	  </div>
+  </div>
 </div>

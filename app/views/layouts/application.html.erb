@@ -18,12 +18,7 @@
   <body>
     <%= render 'layouts/header' %>
     <div class="top_position">
-      <% if user_signed_in? %>
-        <div class="col-sm-2 pd-0">
-          <%= render 'layouts/left_content' %>
-        </div>
-      <% end %>
-      <div class="pd-0 <%= user_signed_in? ? 'col-sm-10' : 'col-sm-12' %>">
+      <div class="pd-0 col-sm-12">
         <%= render 'toastr_rails/flash' %>
         <%= yield %>
       </div>
