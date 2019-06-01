@@ -23,6 +23,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  department_id          :integer
+#  hod_department_id      :integer
 #  semester_id            :integer
 #
 # Indexes
@@ -42,10 +43,13 @@ class User < ApplicationRecord
   validates :role, inclusion: { in: ROLES, message: "%{value} is not a valid role!" }
 
   belongs_to :department, optional: true
+  belongs_to :hod_department, class_name: "Department", foreign_key: "hod_department_id", optional: true
   belongs_to :semester, optional: true
   has_many :faculty_subjects, class_name: "FacultySubject", foreign_key: "faculty_id"
   has_many :subjects, through: :faculty_subjects, source: :user
   has_many :lectures, class_name: "Lecture", foreign_key: "faculty_id"
+  has_many :student_lectures, class_name: "StudentLecture", foreign_key: "student_id"
+  has_many :periods, through: :student_lectures, source: :user
 
   # Methods -  user.admin?, user.faculty?, user.student?
   ROLES.each do |method|

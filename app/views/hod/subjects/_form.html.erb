@@ -4,7 +4,7 @@
       <%= form_for([:hod, @subject]) do |f| %>
         <%= f.text_field :name, required: true , class: 'input_text', placeholder: 'Name'%><br/>
         <%= f.text_field :code, required: true , class: 'input_text', placeholder: 'Subject Code'%><br/>
-        <%= f.select :semester_id, options_for_select(Semester.all.order(:name).map{|s|[s.name, s.id]}, @subject&.semester_id),  prompt: "Please Select Semester" %><br/><br>
+        <%= f.select :semester_id, options_for_select(current_user.department.semesters.all.map{|s|[s.name.titleize, s.id]}, @subject&.semester_id),  prompt: "Please Select Semester" %><br/><br>
         <div class="submit_container">
           <%= f.submit %>
         </div>

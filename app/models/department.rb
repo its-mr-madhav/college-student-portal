@@ -11,6 +11,12 @@
 
 class Department < ApplicationRecord
   has_many :users
+  has_many :subjects
   has_many :semesters
   accepts_nested_attributes_for :semesters, reject_if: :all_blank, allow_destroy: true
+  has_one :hod, -> { where(hod: 'true') }, class_name: "User", foreign_key: "hod_department_id"
+
+  def self.departments_without_hod
+    self.select { |u| !u.hod }
+  end
 end

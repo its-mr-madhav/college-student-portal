@@ -2,7 +2,7 @@ class Hod::SubjectsController < Hod::MainController
   before_action :get_subject, only: [:edit, :update, :destroy]
 
   def index
-    @subjects = Subject.all
+    @subjects = Subject.where(department_id: current_user.department_id)
   end
 
   def create
