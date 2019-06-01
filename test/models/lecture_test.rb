@@ -7,6 +7,7 @@
 #  updated_at         :datetime         not null
 #  faculty_id         :integer
 #  faculty_subject_id :integer
+#  time_table_id      :integer
 #
 
 require 'test_helper'

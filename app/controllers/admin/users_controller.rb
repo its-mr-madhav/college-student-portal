@@ -6,12 +6,18 @@ class Admin::UsersController < Admin::MainController
   end
 
   def create
-    user = User.new(user_params)
-    user.password = 'password'
-    user.role = 'faculty'
-    user.hod = true
-    user.save
-    redirect_to admin_users_url, notice: 'HOD added successfully'
+    @user = User.new(user_params)
+    @user.password = 'password'
+    @user.role = 'faculty'
+    @user.hod_department_id = @user.department_id
+    @user.hod = true
+    if @user.save
+      flash[:notice] = 'HOD added successfully'
+      redirect_to admin_users_path
+    else
+      flash[:error] = "Can't add HOD because #{@user.errors.full_messages.to_sentence.downcase}"
+      render action: 'new'
+    end
   end
 
   def edit; end
@@ -24,15 +30,15 @@ class Admin::UsersController < Admin::MainController
 
   def destroy
     if @user.destroy
-      redirect_to admin_users_url, notice: 'HOD removed successfully' 
+      redirect_to admin_users_path, notice: 'HOD removed successfully' 
     else
-      redirect_to admin_users_url, info: 'Please try again'
+      redirect_to admin_users_path, info: 'Please try again'
     end
   end
 
   def update
     if @user.update(user_params)
-      redirect_to admin_users_url, notice: 'HOD details updated successfully'
+      redirect_to admin_users_path, notice: 'HOD details updated successfully'
     else
       render action: 'edit', info: 'Please try again'
     end

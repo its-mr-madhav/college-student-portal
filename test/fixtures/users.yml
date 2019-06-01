@@ -23,6 +23,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  department_id          :integer
+#  hod_department_id      :integer
 #  semester_id            :integer
 #
 # Indexes

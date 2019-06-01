@@ -7,6 +7,6 @@ class Faculty::MainController < ApplicationController
   private
 
   def ensure_faculty
-    redirect_to root_path, alert: "You are not a faculty!!!" and return false unless current_user.role.eql?('faculty')
+    redirect_to root_path, alert: "You are not a faculty!!!" and return unless current_user.faculty?
   end
 end

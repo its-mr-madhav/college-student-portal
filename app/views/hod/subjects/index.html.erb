@@ -1,9 +1,9 @@
-<% if user_signed_in? && current_user.role.name == "hod" %>
+<% if user_signed_in? && current_user.hod? %>
   <div class="welcom_admin">
     <div class="welcom_admin_inner">
       <div class="heding_top">
         <span>Subject Index</span>
-        <%= link_to( 'Add Subject',new_subject_path ) %>
+        <%= link_to( 'Add Subject',new_hod_subject_path ) %>
       </div>
       <div class="accordion" id="showSubjects">
         <% Subject.all.each_with_index do |subject,index| %>
@@ -14,10 +14,10 @@
                   <%= subject.name %>
                 </button>
                 <button class="btn btn-link btn_link_right" type="button">
-                  <%= link_to( 'Edit Subject', edit_subject_path(subject.id) ) %>
+                  <%= link_to( 'Edit Subject', edit_hod_subject_path(subject.id) ) %>
                 </button>
                 <button class="btn btn-link btn_link_right" type="button">
-                  <%= link_to( "Destroy Subject", subject_path(subject.id), method: :delete, data: { confirm: "You sure to delete subject? This cannot be undone." }) %>
+                  <%= link_to( "Destroy Subject", hod_subject_path(subject.id), method: :delete, data: { confirm: "You sure to delete subject? This cannot be undone." }) %>
                 </button>
               </h5>
             </div>

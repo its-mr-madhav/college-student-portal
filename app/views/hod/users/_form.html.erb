@@ -5,7 +5,7 @@
         <%= f.text_field :name, required: true , class: 'input_text', placeholder: 'Name'%><br/>
         <%= f.email_field :email, required: true , class: 'input_text', placeholder: 'Email'%><br/>
         <%= f.select :role, options_for_select([['Faculty','faculty'],['Student','student']]), { :include_blank => 'Please Select Role' }, :required => true %>
-        <%= f.select :semester_id, options_for_select(current_user.department.semesters.order(:created_at).pluck(:name, :id), @user&.semester_id), { :include_blank => 'Please Select Semester' } %><br/>
+        <%= f.select :semester_id, options_for_select(current_user.department.semesters.pluck(:name, :id), @user&.semester_id), { :include_blank => 'Please Select Semester' } %><br/>
         <br/>
         <div class="submit_container">
           <%= f.submit %>
@@ -14,7 +14,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  semester_id
-</script>

@@ -1,0 +1,13 @@
+<div class="main_container">
+  <div class="inner">
+    <div class="form_start">
+      <%= form_for([:faculty, @attendance]) do |f| %>
+        <%= f.select :lecture_id, options_for_select(Lecture.all.map{|s|["#{s.faculty.name} , #{s.subject.name}", s.id]}), required: true,  prompt: "Please Select Subject" %><br/><br>
+        <%= f.select :present, options_for_select([["P", 'present'],["A",'absent']]),  prompt: "Please Select A or P" %><br/>
+        <div class="submit_container">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

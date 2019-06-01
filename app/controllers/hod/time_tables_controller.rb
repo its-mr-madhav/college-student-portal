@@ -3,36 +3,38 @@ class Hod::TimeTablesController < Hod::MainController
 
   def index
     @time_tables = TimeTable.all
+    @lectures = Lecture.all
   end
 
   def create
     time_table = TimeTable.new(time_table_params)
-    time_table.save
-    redirect_to time_tables_path
+    if time_table.save
+      flash[:notice] = 'Time Table Created successfully'
+      redirect_to hod_time_tables_path
+    else
+      flash[:error] = time_table.errors.full_messages.to_sentence
+      render action: 'new'
+    end
   end
 
-  def edit
-  end
+  def edit; end
 
   def new
     @time_table = TimeTable.new
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
-    if @time_table.destroy
-      redirect_to root_url, notice: "Time Table deleted."
-    else
-      redirect_to time_tables_path, alert: "Try Again!!!"
-    end
+    redirect_to hod_time_tables_path, notice: 'Time Table deleted successfully' if @time_table.destroy
   end
 
   def update
     if @time_table.update(time_table_params)
-      redirect_to time_tables_path, notice: "Time Table is updated successfully"
+      flash[:notice] = 'Time Table updated successfully'
+      redirect_to hod_time_tables_path
     else
+      flash[:error] = @time_table.errors.full_messages.to_sentence
       render action: "edit"
     end
   end

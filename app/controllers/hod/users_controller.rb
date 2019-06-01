@@ -2,8 +2,8 @@ class Hod::UsersController < Hod::MainController
   before_action :get_user, only: [:edit, :update, :destroy, :show]
 
   def index
-    @faculties = User.order('name asc').where("role = ? AND department_id = ? AND id != ?", "faculty", current_user.department.id, current_user.id)
-    @students = User.order('name asc').where("role = ? AND department_id = ? AND id != ?", "student", current_user.department.id, current_user.id)
+    @faculties = User.order('name asc').where("id != ?", current_user.id).where("role = ? AND department_id = ?", 'faculty', current_user.department.id)
+    @students = User.order('name asc').where("role = ? AND department_id = ?", 'student', current_user.department.id)
   end
 
   def create
@@ -11,7 +11,7 @@ class Hod::UsersController < Hod::MainController
     user.password = 'password'
     user.department = current_user.department
     user.save
-    redirect_to admin_users_url, notice: 'User with role HOD created successfully'
+    redirect_to hod_users_url, notice: 'HOD added successfully'
   end
 
   def edit; end
@@ -23,12 +23,12 @@ class Hod::UsersController < Hod::MainController
   def show; end
 
   def destroy
-    redirect_to admin_users_url, notice: 'HOD removed' if @user.destroy
+    redirect_to hod_users_url, notice: 'HOD removed' if @user.destroy
   end
 
   def update
     if @user.update(user_params)
-      redirect_to admin_users_url, notice: 'HOD details updated successfully'
+      redirect_to hod_users_url, notice: 'HOD details updated successfully'
     else
       render action: 'edit'
     end

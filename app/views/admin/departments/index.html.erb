@@ -26,7 +26,7 @@
               <label>Code :</label>
               <span><%= department.code %></span><br>
               <label>HOD :</label>
-              <span><%= department.users.where(hod: true).first %></span><br><br>
+              <span><%= department.hod.name %></span><br><br>
               <% if department.semesters.present? %>
                 <label>Semesters :</label>
                 <table class="table table-hover table-striped">

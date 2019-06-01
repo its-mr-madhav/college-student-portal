@@ -1,0 +1,2 @@
+module Faculty::AttendancesHelper
+end

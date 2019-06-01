@@ -30,3 +30,4 @@ public/uploads/*
 config/database.yml
 db/schema.rb
 sendgrid.env
+Gemfile.lock

@@ -1,4 +1,5 @@
-<li><%= link_to('Faculties', hod_users_path) %></li>
+<li><%= link_to('Faculties', hod_users_path(type: 'faculty')) %></li>
+<li><%= link_to('Students', hod_users_path(type: 'student')) %></li>
 <li><%= link_to('Subjects', hod_subjects_path) %></li>
 <li><%= link_to( 'Subjects of Faculty Members', hod_faculty_subjects_path ) %></li>
 <li><%= link_to( 'Lectures of Faculty Members', hod_lectures_path ) %></li>

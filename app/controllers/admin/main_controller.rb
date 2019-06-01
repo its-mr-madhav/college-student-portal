@@ -6,6 +6,6 @@ class Admin::MainController < ApplicationController
   private
 
   def ensure_admin
-    redirect_to root_path, alert: "You are not an admin!!!" and return unless current_user.role.eql?('admin')
+    redirect_to root_path, alert: "You are not an admin!!!" and return unless current_user.admin?
   end
 end

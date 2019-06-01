@@ -1,0 +1,33 @@
+<% if @students.present? %>
+  <h5>All Students:</h5>
+  <table class="table table-hover table-striped" id="student_table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Department</th>
+        <th scope="col">Confirmed</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @students.each_with_index do |student,index| %>
+      <tr>
+        <th scope="row"><%= index+1 %></th>
+        <td><%= student.name.capitalize %></td>
+        <td><%= student.email %></td>
+        <td><%= student.department.name.capitalize %></td>
+        <td><%= student.confirmed? ? 'Already Confirmed' : 'Confirmation Pending' %></td>
+        <td><%= link_to( 'Edit', edit_hod_user_path(student.id) ) %></td>
+        <td>
+          <%= link_to( "Delete", hod_user_path(student.id), method: :delete, data: { confirm: "You sure to remove student? This cannot be undone." }) %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h5>There is no student in your department</h5>
+<% end %>
