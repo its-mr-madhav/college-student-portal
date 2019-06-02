@@ -2,7 +2,7 @@ class Faculty::AttendancesController < Faculty::MainController
   before_action :get_attendance, only: [:edit, :update]
 
   def index
-    @students = User.where(role: 'student')
+    @students = User.where(role: 'student').where(department_id: current_user.department_id)
   end
 
   def create

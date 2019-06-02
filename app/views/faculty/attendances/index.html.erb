@@ -19,7 +19,9 @@
             <th scope="row"><%= index+1 %></th>
             <td><%= student.name.capitalize %></td>
             <td>
-              <%= check_box_tag "student#{student.id}", student.id, :class => "is-present", data: {absent_present_student_url: toggle_student_attendance_faculty_attendance_path(student.id)} %>
+              <%= check_box_tag "student#{student.id}", student.id, :class => "is-present" %>
+              <%#= check_box_tag "student#{student.id}", student.id, :class => "is-present", data: {absent_present_student_url: toggle_student_attendance_faculty_attendance_path(student.id)} %>
+            </td>
             </td>
           </tr>
           <% end %>
