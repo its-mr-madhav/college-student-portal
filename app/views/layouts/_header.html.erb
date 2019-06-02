@@ -9,13 +9,13 @@
       <ul class="nav navbar-nav mynavbar">
 	    	<% if user_signed_in? %>
 		      <li><%= link_to('Homepage', root_path) %></li>
-	        <% if current_user.role.eql?('admin') %>
+	        <% if current_user.admin? %>
 	          <%= render '/shared/admin_left_navigation'%>
 	        <% elsif current_user.hod? %>
 	          <%= render '/shared/hod_left_navigation'%>
-	        <% elsif current_user.role.eql?('faculty') %>
+	        <% elsif current_user.faculty? %>
 	          <%= render '/shared/faculty_left_navigation'%>
-	        <% elsif current_user.role.eql?('student') %>
+	        <% elsif current_user.student? %>
 	          <%= render '/shared/student_left_navigation'%>
 	        <% end %>
 	        <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>

@@ -41,6 +41,6 @@ Rails.application.routes.draw do
     resources :details
     resources :marks
     resources :assignments
-    get '/', to: 'lectures#index'
+    get '/', to: 'details#index'
   end
 end
