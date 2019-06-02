@@ -734,3 +734,15 @@ body{margin-top:20px;}
     margin-top: 0;
   }
 }
+.mydropdown{
+  color: #fff !important;
+}
+.dropdown:hover .dropdown-menu {
+display: block;
+}
+.content{
+  font-size: 18px;
+  padding-left: 34px;
+  min-width: 143px;
+  position: absolute !important;
+}
