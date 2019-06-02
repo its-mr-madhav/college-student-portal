@@ -31,7 +31,7 @@
                   <div class="profile-info-name">Name: </div>
 
                   <div class="profile-info-value">
-                    <span>alexdoe</span>
+                    <span><%= current_user.name %></span>
                   </div>
                 </div>
 
@@ -39,7 +39,7 @@
                   <div class="profile-info-name"> Roll No:</div>
 
                   <div class="profile-info-value">
-                    <span>1506812101</span>
+                    <span><%= current_user.id %></span>
                   </div>
                 </div>
 
@@ -47,20 +47,20 @@
                   <div class="profile-info-name"> Branch: </div>
 
                   <div class="profile-info-value">
-                    <span>CSE</span>
+                    <span><%= current_user.department.name.titleize %></span>
                   </div>
                 </div>
 
                 <div class="profile-info-row">
                   <div class="profile-info-name">Email: </div>
                   <div class="profile-info-value">
-                    <span>bhavuksidhu@gmail.com</span>
+                    <span><%= current_user.email %></span>
                   </div>
                 </div>
                 <div class="profile-info-row">
                   <div class="profile-info-name"> Semester: </div>
                   <div class="profile-info-value">
-                    <span>Ist</span>
+                    <span><%= current_user.semester.name.capitalize %></span>
                   </div>
                 </div>
               </div>
@@ -68,32 +68,47 @@
           </div>
         </div>
         <div id="feed" class="tab-pane">
-          <div class="col-sm-6">
-            <div class="profile-activity">
-              <div class="user">
-                <h3>SUBJECT NAME</h3>
-              </div>
-            </div>
-            <div class="time">
-              <h5>DBMS</h5>
-              <h5>DBMS</h5>
-              <h5>DBMS</h5>
-              <h5>DBMS</h5>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="profile-activity">
-              <div class="user">
-                <h3>SUBJECT Code</h3>
-              </div>
-            </div>
-            <div class="time">
-              <h5>NCS 405</h5>
-              <h5>NCS 405</h5>
-              <h5>NCS 405</h5>
-              <h5>NCS 405</h5>
-            </div>
-          </div>
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Subject Code</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>MATHS</td>
+                <td>NCS-102</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>PHYSICS</td>
+                <td>NCS-103</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>CHEMISTRY</td>
+                <td>NCS-104</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>CCPC</td>
+                <td>NCS-101</td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td>ENGINEERING ECONOMICS</td>
+                <td>NCS-112</td>
+              </tr>
+              <tr>
+                <th scope="row">6</th>
+                <td>MECHANICS</td>
+                <td>NCS-121</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

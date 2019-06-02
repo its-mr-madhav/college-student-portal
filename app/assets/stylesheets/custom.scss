@@ -589,3 +589,148 @@ body{margin-top:20px;}
     color: #777;
     text-align: center;
 }
+/////////////////////////////////////////////////////////////////////////////////////
+/* Student Marks Page */
+/////////////////////////////////////////////////////////////////////////////////////
+.custom{
+  width: 100%;
+  padding: 30px 15px
+}
+.bar_part{
+  padding: 30px 0;
+  border-bottom: 1px solid #7af8e6;
+}
+.result_item{
+  display: flex;
+  flex-direction: row;
+  padding:8px 0;
+}
+.result{
+  font-size: 16px;
+  font-weight: 600;
+  color: #707070;
+}
+.item_1{
+  width: 22%;
+}
+.result_item span{
+  font-size: 13px;
+  font-weight: 600;
+  color: #707070;
+}
+.flex_container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 0;
+  color: #707070;
+  font-size: 15px;
+}
+.full{
+  flex-grow: 1;
+  padding: 0 10px;
+}
+.item_{
+  width: 13%;
+}
+.circle_percent {
+  font-size: 90px;
+  width: 90px;
+  height: 90px;
+  position: relative;
+  background: #eee;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+  margin-top: -20px;
+}
+.circle_inner {
+  position: absolute;
+  left: 0; 
+  top: 0; 
+  width: 1em; 
+  height: 1em; 
+  clip:rect(0 1em 1em .5em);
+}
+.round_per {
+  position: absolute; 
+  left: 0; 
+  top: 0; 
+  width: 1em; 
+  height: 1em; 
+  background: #077cb9; 
+  clip:rect(0 1em 1em .5em); 
+  transform:rotate(180deg); 
+  transition:1.05s;
+}
+.percent_more .circle_inner {
+  clip:rect(0 .5em 1em 0em);
+}
+.percent_more:after {
+  position: absolute; 
+  left: .5em; 
+  top:0em; 
+  right: 0; 
+  bottom: 0; 
+  background: #219d50; 
+  content:'';
+}
+.circle_inbox {
+  position: absolute; 
+  top: 5px; 
+  left: 5px; 
+  right: 5px; 
+  bottom: 5px; 
+  background: #fff; 
+  z-index:3; 
+  border-radius: 50%;
+}
+.percent_text {
+  position: absolute; 
+  font-size: 22px; 
+  left: 50%; 
+  top: 50%; 
+  transform: translate(-50%,-50%); 
+  z-index: 3; 
+  border-bottom: 1px dotted #057cb9;
+  font-weight: 600;
+  color: #057cb9;
+}
+.percent_text:before{
+  content: 'TOTAL ';
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  font-size: 12px;
+  color: #5a5b5d;
+  font-weight: normal;
+  transform: translate(-50%,8%);
+}
+
+.progress-bar {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #3fdbe7;
+  transition: width .6s ease;
+}
+.progress{
+  border-radius: 0px;
+}
+@media screen and (max-width: 992px){
+  .item_{
+    width: auto;
+  }
+  .item_1{
+    width: auto;
+  }
+  .circle_percent {
+    margin-top: 0;
+  }
+}

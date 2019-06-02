@@ -3,6 +3,179 @@
     <div class="heding_top">
       <span>Marks Index</span>
     </div>
-    
+    <div class="custom">
+      <div class="bar_part">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4 class="result">MATHS</h4>
+            <div class="row">
+              <div class="col-sm-6 col-xs-6">
+                <div class="result_item">
+                  <span class="item_1">STATUS:</span>
+                  <span style="color: rgb(32, 173, 27);">PASS</span>
+                </div>
+                <div class="result_item">
+                  <span class="item_1">MARKS:</span>
+                  <span>60/100</span>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xs-6">
+                <div class="circle_percent" data-percent="60">
+                  <div class="circle_inner">
+                      <div class="round_per"></div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <h4 class="result">PHYSICS</h4>
+            <div class="row">
+              <div class="col-sm-6 col-xs-6">
+                <div class="result_item">
+                  <span class="item_1">STATUS:</span>
+                  <span style="color: rgb(32, 173, 27);">PASS</span>
+                </div>
+                <div class="result_item">
+                  <span class="item_1">MARKS:</span>
+                  <span>73/100</span>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xs-6">
+                <div class="circle_percent" data-percent="73">
+                  <div class="circle_inner">
+                      <div class="round_per"></div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bar_part">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4 class="result">CHEMISTRY</h4>
+            <div class="row">
+              <div class="col-sm-6 col-xs-6">
+                <div class="result_item">
+                  <span class="item_1">STATUS:</span>
+                  <span style="color: rgb(32, 173, 27);">PASS</span>
+                </div>
+                <div class="result_item">
+                  <span class="item_1">MARKS:</span>
+                  <span>75/100</span>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xs-6">
+                <div class="circle_percent" data-percent="75">
+                  <div class="circle_inner">
+                      <div class="round_per"></div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <h4 class="result">COMPUTER PROGRAMING</h4>
+            <div class="row">
+              <div class="col-sm-6 col-xs-6">
+                <div class="result_item">
+                  <span class="item_1">STATUS:</span>
+                  <span style="color: rgb(32, 173, 27);">PASS</span>
+                </div>
+                <div class="result_item">
+                  <span class="item_1">MARKS:</span>
+                  <span>95/100</span>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xs-6">
+                <div class="circle_percent" data-percent="95">
+                  <div class="circle_inner">
+                      <div class="round_per"></div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bar_part">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4 class="result">ENGINEERING ECONOMICS</h4>
+            <div class="row">
+              <div class="col-sm-6 col-xs-6">
+                <div class="result_item">
+                  <span class="item_1">STATUS:</span>
+                  <span style="color: rgb(32, 173, 27);">PASS</span>
+                </div>
+                <div class="result_item">
+                  <span class="item_1">MARKS:</span>
+                  <span>83/100</span>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xs-6">
+                <div class="circle_percent" data-percent="83">
+                  <div class="circle_inner">
+                      <div class="round_per"></div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <h4 class="result">MECHANICS</h4>
+            <div class="row">
+              <div class="col-sm-6 col-xs-6">
+                <div class="result_item">
+                  <span class="item_1">STATUS:</span>
+                  <span style="color: rgb(32, 173, 27);">PASS</span>
+                </div>
+                <div class="result_item">
+                  <span class="item_1">MARKS:</span>
+                  <span>75/100</span>
+                </div>
+              </div>
+              <div class="col-sm-6 col-xs-6">
+                <div class="circle_percent" data-percent="75">
+                  <div class="circle_inner">
+                      <div class="round_per"></div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+  $(".circle_percent").each(function() {
+    var $this = $(this),
+    $dataV = $this.data("percent"),
+    $dataDeg = $dataV * 3.6,
+    $round = $this.find(".round_per");
+    $round.css("transform", "rotate(" + parseInt($dataDeg + 180) + "deg)"); 
+    $this.append('<div class="circle_inbox"><span class="percent_text"></span></div>');
+    $this.prop('Counter', 0).animate({Counter: $dataV},
+    {
+      duration: 2000, 
+      easing: 'swing', 
+      step: function (now) {
+        $this.find(".percent_text").text(Math.ceil(now)+"%");
+      }
+    });
+    if($dataV >= 51){
+      $round.css("transform", "rotate(" + 360 + "deg)");
+      setTimeout(function(){
+        $this.addClass("percent_more");
+      },1000);
+      setTimeout(function(){
+        $round.css("transform", "rotate(" + parseInt($dataDeg + 180) + "deg)");
+      },1000);
+    } 
+  });
+</script>
