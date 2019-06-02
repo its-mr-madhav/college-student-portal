@@ -50,6 +50,7 @@ class User < ApplicationRecord
   has_many :lectures, class_name: "Lecture", foreign_key: "faculty_id"
   has_many :student_lectures, class_name: "StudentLecture", foreign_key: "student_id"
   has_many :periods, through: :student_lectures, source: :user
+  has_many :attendances, class_name: "Attendance", foreign_key: "user_id"
 
   # Methods -  user.admin?, user.faculty?, user.student?
   ROLES.each do |method|
