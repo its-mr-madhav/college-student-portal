@@ -37,6 +37,10 @@ Rails.application.routes.draw do
 
   namespace :student, path: 'student' do
     resources :lectures
+    resources :attendances
+    resources :details
+    resources :marks
+    resources :assignments
     get '/', to: 'lectures#index'
   end
 end
